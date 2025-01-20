@@ -4,7 +4,7 @@ where duration = (select max(duration) from trackinfo);
 
 select track
 from trackinfo
-where duration > 210;
+where duration >= 210;
 
 select collection
 from collectioninfo
@@ -14,6 +14,19 @@ select musician
 from musicianinfo
 where musician not like ' ';
 
+-- 1-й вариант
 select track
 from trackinfo
-where track like '%my%' or track like '%мой%';
+where track ilike 'my %' 
+or track ilike '% my'
+or track ilike '% my %'
+or track ilike 'my'
+or track ilike 'мой %'
+or track ilike '% мой'
+or track ilike '% мой %'
+or track ilike 'мой';
+
+-- 2-й вариант
+SELECT track
+FROM trackinfo
+WHERE track ~* '(^|\s)(my|мой)($|\s)';
