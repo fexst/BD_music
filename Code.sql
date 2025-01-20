@@ -17,7 +17,7 @@ Year DATE not null
 create table if not exists TrackInfo (
 TrackID SERIAL primary key,
 Duration INTEGER not null,
-AlbumsID INTEGER primary key references AlbumsInfo(AlbumsID),
+AlbumsID INTEGER references AlbumsInfo(AlbumsID),
 Track text not null
 );
 
@@ -44,7 +44,6 @@ TrackID INTEGER references TrackInfo(TrackID),
 CollectionID INTEGER references CollectionInfo(CollectionID),
 constraint pk2 primary key (TrackID, CollectionID)
 );
-
 
 select track, duration
 from trackinfo
